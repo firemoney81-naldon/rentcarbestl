@@ -1,23 +1,521 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <style>
+    /* Reset and Core Styles */
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8; /* Adjusted line height for readability */
+      color: #333;
+      background: #f0f2f5; /* Light gray background for a modern feel */
+    }
+    header, nav, section, footer {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      background: #fff;
+      margin-bottom: 20px; /* Increased bottom margin for better separation */
+      border-radius: 10px; /* Rounded corners for soft design */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Soft shadow effect */
+    }
+    header h1 {
+      margin-bottom: 5px;
+      color: #007bff; /* Primary color: Blue */
+      font-size: 2.5rem;
+    }
+    nav {
+      background: #007bff; /* Navigation bar background color */
+      border-radius: 10px;
+      text-align: center;
+      padding: 15px 0;
+      margin-bottom: 30px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 20px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s, background-color 0.3s;
+      padding: 8px 12px; /* Add padding for clickable area */
+      border-radius: 4px;
+    }
+    nav a:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      text-decoration: none; /* Remove underline on hover for cleaner look */
+    }
+    h2 {
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 8px;
+      margin-bottom: 25px;
+      color: #2c3e50; /* Darker text for titles */
+      font-size: 2rem;
+    }
+    h3 {
+      color: #007bff;
+      margin-top: 20px;
+      border-left: 5px solid #ff5722; /* Accent color: Orange */
+      padding-left: 10px;
+      font-size: 1.6rem;
+    }
+    h4 {
+      color: #333;
+      margin-top: 15px;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    p {
+      color: #555;
+      margin-bottom: 15px;
+    }
+    /* Card design for services/reviews */
+    .service_card, .review_card {
+      border: 1px solid #e0e0e0;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background: #fafafa;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .service_card:hover, .review_card:hover {
+      box-shadow: 0 8px 16px rgba(0, 123, 255, 0.2);
+      transform: translateY(-5px); /* Lift effect on hover */
+    }
+    /* Call to Action Button */
+    .cta {
+      display: inline-block;
+      background-color: #ff5722; /* Accent color for CTA */
+      color: white;
+      padding: 15px 35px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      margin-top: 15px;
+    }
+    .cta:hover {
+      background-color: #e64a19;
+    }
+    /* Form Styling */
+    form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #333;
+    }
+    form input, form select, form textarea {
+      width: calc(100% - 20px);
+      padding: 12px 10px;
+      margin-top: 4px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    form button {
+      margin-top: 20px;
+      width: 100%;
+      cursor: pointer;
+      border: none;
+      padding: 15px;
+      background-color: #007bff;
+      color: white;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+    form button:hover {
+      background-color: #0056b3;
+    }
+    /* FAQ Section Styles */
+    dl.faq {
+      margin-top: 20px;
+    }
+    dl.faq dt {
+      font-weight: 700;
+      margin-top: 15px;
+      cursor: pointer;
+      color: #007bff;
+      font-size: 1.1rem;
+      padding: 10px;
+      border-radius: 5px;
+      background: #f7f9fc;
+      border-left: 4px solid #007bff;
+      transition: background-color 0.3s;
+    }
+    dl.faq dt:hover {
+      background-color: #e9f0f7;
+    }
+    dl.faq dd {
+      margin-left: 15px;
+      margin-top: 10px;
+      color: #555;
+      padding: 10px;
+      background: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 5px;
+    }
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.95rem;
+    }
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    /* Image styling */
+    .image-container {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .image-container img {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    /* Grid layout for cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    /* Pexels credit */
+    .image-credit {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 5px;
+    }
+    /* Graph styling (using simple div based elements for representation) */
+    .graph-container {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border: 1px solid #eee;
+    }
+    .graph-bar {
+      height: 25px;
+      background-color: #007bff;
+      margin: 5px 0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .graph-label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+  </style>
+
+  <!-- JSON-LD Schema for LocalBusiness & OfferCatalog -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "리스카 전문 비교 업체",
+    "image": "https://www.yourdomain.kr/images/logo.png",
+    "telephone": "1577-1234",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "서울 강남구 테헤란로 123",
+      "addressLocality": "서울시",
+      "addressRegion": "서울특별시",
+      "postalCode": "06130",
+      "addressCountry": "KR"
+    },
+    "url": "https://www.yourdomain.kr/",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "areaServed": {
+      "@type": "State",
+      "name": "대한민국 전역"
+    },
+    "priceRange": "$$$",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "리스카 및 장기렌트 상품",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "신차 리스"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "장기 렌트카"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "중고차 리스"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "법인 사업자 리스"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "만기 인수형 리스"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "초기 비용 제로 리스"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "리스 견적 비교 서비스"}}
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header id="top">
+  <h1>2026 리스카·장기렌트 비교 분석: 가격, 견적, 장단점 완벽 가이드</h1>
+  <p>최신 리스카 <strong>내돈내산 후기</strong>부터 <strong>가장 저렴한곳</strong> 추천까지, 2026년 신차 리스 정보를 한눈에!</p>
+  <a href="#quote_form" class="cta">무료 견적 요청하기</a>
+</header>
+
+<nav>
+  <a href="#service">서비스 안내</a>
+  <a href="#compare">리스 VS 렌트 비교</a>
+  <a href="#process">견적 절차</a>
+  <a href="#review">고객 후기</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<section id="service" aria-label="리스카 서비스 안내">
+  <h2>리스카 및 장기렌트 상품 소개</h2>
+  <div class="card-grid">
+    <div class="service_card">
+      <h3>1. 신차 리스 (New Car Lease)</h3>
+      <p>신차를 구매하는 대신 일정 기간 동안 대여하여 사용하는 방식입니다. 초기 비용 부담을 최소화하면서 원하는 차량을 운행할 수 있는 장점이 있습니다. 특히 사업자의 경우 월 리스료 전액을 비용으로 처리하여 세금 절감 효과를 볼 수 있습니다.</p>
+    </div>
+    <div class="service_card">
+      <h3>2. 장기 렌트카 (Long-term Rental Car)</h3>
+      <p>리스와 유사하지만 차량 소유가 렌트사 명의로 되어 있어 보험료 할증이나 재산세 등 개인 자산으로 잡히는 부분이 없습니다. 일반 번호판(하, 허, 호) 대신 일반 번호판을 사용하며, 주행거리 제한 없이 편하게 이용하는 데 적합합니다.</p>
+    </div>
+    <div class="service_card">
+      <h3>3. 중고차 리스 (Used Car Lease)</h3>
+      <p>신차가 아닌 중고차를 리스하는 방식입니다. 초기 비용과 월 리스료가 신차 리스보다 저렴하여 합리적인 가격으로 차량을 이용하고자 하는 분들에게 인기가 많습니다. 중고차 리스 전문 업체를 통해 신뢰도 높은 차량을 선별하는 것이 중요합니다.</p>
+    </div>
+    <div class="service_card">
+      <h3>4. 만기 인수/반납형 리스</h3>
+      <p>계약 만기 시 차량을 인수할지 반납할지 선택할 수 있습니다. 반납형 리스는 월 납입금이 저렴하다는 장점이 있고, 인수형 리스는 계약 기간 동안 차량을 이용해 보고 나중에 내 차로 만들 수 있다는 장점이 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section id="compare" aria-label="리스카와 장기렌트 비교 분석">
+  <h2>리스 vs 장기렌트: 차이점 비교 분석 (feat. 2026 트렌드)</h2>
+  <p>2026년 들어 리스카 시장은 '합리적인 소비'라는 트렌드와 맞물려 급격히 성장하고 있습니다. 리스와 렌트는 비슷해 보이지만 세금, 보험, 번호판, 만기 시 처리 방식 등 여러 면에서 차이점을 가지고 있습니다. <a href="https://namu.wiki/w/%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%EC%B9%B4" target="_blank">나무위키</a>나 <a href="https://www.ftc.go.kr/www/main.do" target="_blank">공정거래위원회</a> 자료를 참고하여 본인에게 맞는 상품을 선택하는 것이 중요합니다.</p>
+
+  <div class="image-container">
+    <img src="https://images.pexels.com/photos/11019672/pexels-photo-11019672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="리스카 상담 이미지" />
+    <p class="image-credit">Image credit: Pexels</p>
+  </div>
+
+  <h3>리스카와 장기렌트카 핵심 차이점 요약표</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>구분</th>
+        <th>리스카 (금융 리스/운용 리스)</th>
+        <th>장기렌트카</th>
+        <th>자가용 구매 (할부)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>차량 번호판</strong></td>
+        <td>일반 번호판 (하, 호, 허 제외)</td>
+        <td>렌터카 번호판 (하, 호, 허)</td>
+        <td>일반 번호판</td>
+      </tr>
+      <tr>
+        <td><strong>보험 처리</strong></td>
+        <td>개인 보험 가입 (경력 인정)</td>
+        <td>렌트사 보험 (경력 단절 가능성)</td>
+        <td>개인 보험 가입</td>
+      </tr>
+      <tr>
+        <td><strong>자동차세</strong></td>
+        <td>리스 이용자 부담</td>
+        <td>렌트사 부담 (월 렌트료에 포함)</td>
+        <td>차량 소유자 부담</td>
+      </tr>
+      <tr>
+        <td><strong>정비 서비스</strong></td>
+        <td>이용자 선택 (별도 정비)</td>
+        <td>포함 상품 선택 가능 (렌트사 관리)</td>
+        <td>이용자 직접 관리</td>
+      </tr>
+      <tr>
+        <td><strong>사업자 비용 처리</strong></td>
+        <td>월 리스료 전액 비용 처리 (연 1,500만원 한도)</td>
+        <td>월 렌트료 전액 비용 처리 (연 1,500만원 한도)</td>
+        <td>차량 감가상각비, 유류비 등 처리</td>
+      </tr>
+      <tr>
+        <td><strong>만기 시 선택</strong></td>
+        <td>반납/인수/재리스 선택</td>
+        <td>반납/인수 선택</td>
+        <td>소유</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>리스카의 장점 및 단점 분석</h3>
+  <h4>리스카의 장점 (Advantages)</h4>
+  <p>리스카를 이용하면 초기 비용 부담을 크게 줄일 수 있습니다. 신차를 구매할 때 필요한 차량가 전액을 한 번에 지불하거나 높은 비율의 할부 이자를 내는 것보다, 차량 가격의 일부를 잔존가치로 유보하고 남은 금액에 대해서만 월 리스료를 지불하기 때문입니다. 또한, 사업자의 경우 월 리스료를 비용으로 처리하여 세금 감면 혜택을 받을 수 있으며, 특히 고가 차량의 경우 일반적인 할부 구매보다 절세 효과가 큽니다. 차량 관리가 용이하며, 계약 기간 만료 후 새 차량으로 교체하기가 쉽다는 점도 큰 장점입니다.</p>
+
+  <h4>리스카의 단점 (Disadvantages)</h4>
+  <p>가장 큰 단점은 주행거리 제한입니다. 계약 시 정한 연간 주행거리를 초과하면 만기 시 패널티가 발생하므로, 주행량이 많은 운전자에게는 불리합니다. 또한 리스 차량은 엄밀히 말해 개인 소유가 아니므로, 차량 개조나 튜닝에 제약이 있으며 만기 시 차량 인수를 원하지 않는다면 중고차 판매를 통한 이익을 얻기 어렵습니다.</p>
+</section>
+
+<section id="cost" aria-label="리스카 비용 및 견적 분석">
+  <h2>리스카 가격 및 비용 견적: 평균 얼마가 적당할까?</h2>
+  <p>2026년 리스카 시장은 '합리적인 가격' 경쟁이 심화되고 있습니다. 리스카 견적은 단순히 차량 가격으로 결정되는 것이 아니라, 차량의 잔존가치, 계약 기간, 초기 보증금, 이자율 등에 따라 복합적으로 산출됩니다. "리스카 견적 비교"를 통해 여러 업체가 제시하는 가격을 확인하고, "저렴한곳"을 찾는 것이 중요합니다.</p>
+
+  <h3>리스카 가격 결정 요인</h3>
+  <ul>
+    <li><strong>잔존가치 (Residual Value):</strong> 계약 만기 시 차량의 예상 중고차 가격입니다. 잔존가치가 높을수록 월 납입금(리스료)이 낮아지는 효과가 있습니다.</li>
+    <li><strong>금리 및 수수료:</strong> 리스사마다 금리가 다르게 적용됩니다. "리스 싼곳"을 찾기 위해서는 금리 비교가 필수적입니다.</li>
+    <li><strong>계약 기간:</strong> 보통 24개월부터 60개월까지 선택 가능하며, 기간이 길어질수록 월 리스료가 낮아지는 경향이 있습니다.</li>
+    <li><strong>초기 보증금/선납금:</strong> 초기 보증금을 납부하면 월 납입금을 줄일 수 있습니다. 선납금은 미리 지불한 리스료로 계약 만기 시 돌려받지 못합니다.</li>
+    <li><strong>차종 및 옵션:</strong> 차량의 출고 가격과 선택 옵션에 따라 기본 리스료가 달라집니다.</li>
+  </ul>
+
+  <h3>2026년 평균 리스 비용 예시 (가상 데이터)</h3>
+  <p>2026년형 인기 차종을 기준으로 리스카 월 납입금 평균을 예상해봅니다. (※ 초기 보증금 30%, 48개월 계약 조건)</p>
+  <div class="graph-container">
+    <div class="graph-label">준중형 세단 (아반떼/K3)</div>
+    <div class="graph-bar" style="width: 40%;">약 30만원대</div>
+    <div class="graph-label">중형 세단 (쏘나타/K5)</div>
+    <div class="graph-bar" style="width: 55%;">약 40~50만원대</div>
+    <div class="graph-label">준대형 세단 (그랜저/K8)</div>
+    <div class="graph-bar" style="width: 70%;">약 60~70만원대</div>
+    <div class="graph-label">중형 SUV (쏘렌토/싼타페)</div>
+    <div class="graph-bar" style="width: 65%;">약 50~60만원대</div>
+    <div class="graph-label">프리미엄 SUV (GV80/X5)</div>
+    <div class="graph-bar" style="width: 90%;">약 100~150만원대</div>
+  </div>
+</section>
+
+<section id="process" aria-label="리스카 견적 및 가입 절차">
+  <h2>리스카 가입 절차 안내</h2>
+  <p>리스카를 처음 이용하는 분들도 쉽게 진행할 수 있도록 간편한 절차를 안내해 드립니다. 전문 컨설턴트와의 상담을 통해 "신규 가입 혜택"과 "현금지원" 프로모션 등 다양한 정보를 얻을 수 있습니다. 복잡한 서류 절차는 '전문 업체'에 맡기면 됩니다.</p>
+
+  <ol>
+    <li><strong>1. 무료 견적 요청 및 상담:</strong> 고객님의 원하는 차량, 계약 기간, 초기 비용(보증금/선납금), 주행거리 등을 기반으로 견적을 요청합니다.</li>
+    <li><strong>2. 심사 및 조건 협의:</strong> 리스사에서 고객님의 신용도를 심사합니다. 신용 점수와 재정 상황에 따라 보증금 비율, 금리 조건이 달라질 수 있습니다.</li>
+    <li><strong>3. 계약 체결 및 차량 발주:</strong> 계약서에 서명하고 차량을 발주합니다. 인기 차종은 출고까지 시간이 걸릴 수 있습니다.</li>
+    <li><strong>4. 차량 인수 및 사후 관리:</strong> 차량을 인수하고 운행을 시작합니다. 리스 계약 기간 동안 전문 업체를 통해 꾸준히 차량 관리를 받을 수 있습니다.</li>
+  </ol>
+
+  <h3>신규 가입 시 혜택과 이벤트</h3>
+  <p>저희 업체는 신규 가입 고객님들을 위해 특별한 "현금지원"과 "사은품" 이벤트를 진행하고 있습니다. "리스카 할인" 혜택을 통해 초기 비용을 절감할 수 있으며, 제휴된 주유 상품권이나 백화점 상품권 등을 추가로 제공하여 고객 만족도를 높이고 있습니다. 자세한 "신규 가입 혜택"은 견적 문의 시 안내해 드립니다.</p>
+</section>
+
+<section id="review" aria-label="고객 사례 및 내돈내산 후기">
+  <h2>고객 사례 및 내돈내산 후기</h2>
+  <p>실제 리스카 이용 고객들의 "내돈내산 후기"를 바탕으로 리스카의 장단점과 만족도를 확인해 보세요. 다양한 차종과 조건의 고객 사례를 통해 본인의 상황에 맞는 정보를 얻을 수 있습니다.</p>
+
+  <div class="card-grid">
+    <div class="review_card">
+      <h3>사업자 (법인) 고객님 후기 - 제네시스 G80</h3>
+      <p>“세금 절감이 가장 큰 목적이었는데, 월 리스료 전액을 비용 처리할 수 있어 만족합니다. 고가 차량이라 취등록세 부담도 컸을 텐데, 리스로 진행하니 초기 비용 부담 없이 업무용으로 사용 중입니다. 전문 업체라 그런지 꼼꼼하게 관리해줘서 좋습니다. 다만 주행거리 제한 때문에 개인 용도로 사용하기에는 조금 불편한 점은 있습니다.”</p>
+    </div>
+    <div class="review_card">
+      <h3>개인 고객님 후기 - 쏘렌토 MQ4</h3>
+      <p>“신차 할부로 구매할까 고민하다가 리스로 결정했습니다. 초기 비용 보증금을 20%만 넣고 월 40만원대 가격으로 쏘렌토를 운행하고 있습니다. 만기 때 차량을 반납할 예정이라 중고차 가격 하락 걱정도 없습니다. 가족이 함께 타는 차량이라 주행거리 제한이 걱정이었지만, 연간 3만km 옵션으로 선택해서 크게 부담은 없었습니다.”</p>
+    </div>
+    <div class="review_card">
+      <h3>중고차 리스 고객님 후기 - K5</h3>
+      <p>“신차 출고 대기가 너무 길어서 중고차 리스를 선택했습니다. 신차 리스 대비 월 납입금이 저렴한곳을 찾다가 이곳을 알게 되었고, 상태 좋은 K5 중고차를 합리적인 가격에 이용하고 있습니다. 신용도가 낮아 할부 구매가 어려웠는데, 중고차 리스는 비교적 심사 기준이 유연하여 좋았습니다.”</p>
+    </div>
+  </div>
+
+  <div class="image-container">
+    <img src="https://images.pexels.com/photos/1149712/pexels-photo-1149712.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="자동차 키와 계약서" />
+    <p class="image-credit">Image credit: Pexels</p>
+  </div>
+
+  <h3>리스카 관련 정보 탐색 키워드 분석 (네이버, 구글, 유튜브)</h3>
+  <p>최근에는 고객들이 리스카 정보를 찾기 위해 네이버, 구글, 유튜브 등 다양한 플랫폼을 활용합니다. 특히 "네이버" 검색창에는 '리스카 장점 단점', '리스카 현금지원' 등의 키워드가 많이 검색됩니다. 유튜브에서는 '리스카 내돈내산 후기'나 '리스카 견적 비교' 영상이 인기를 얻고 있습니다. 저희 업체는 이러한 고객들의 검색 트렌드에 맞춰 정확하고 투명한 정보를 제공하고자 합니다.</p>
+</section>
+
+<section id="quote_form" aria-label="무료 견적 신청">
+  <h2>무료 견적 요청하기</h2>
+  <form action="/submit-estimate" method="POST" aria-describedby="quote_description">
+    <p id="quote_description">아래 폼을 작성해주시면 1대1 맞춤 컨설팅을 통해 최적의 리스 견적을 제공해 드립니다. 신규 가입 혜택 및 할인 프로모션 정보도 함께 안내해 드립니다.</p>
+
+    <label for="car_model">희망 차종</label>
+    <input type="text" id="car_model" name="car_model" placeholder="예: 쏘나타, GV70, K5 등" required />
+
+    <label for="lease_type">희망 상품 유형</label>
+    <select id="lease_type" name="lease_type" required>
+      <option value="">선택하세요</option>
+      <option value="신차 리스">신차 리스</option>
+      <option value="장기 렌트">장기 렌트카</option>
+      <option value="중고차 리스">중고차 리스</option>
+      <option value="법인 리스">법인/사업자 리스</option>
+    </select>
+
+    <label for="contract_term">계약 기간 (개월)</label>
+    <select id="contract_term" name="contract_term" required>
+      <option value="">선택하세요</option>
+      <option value="24">24개월</option>
+      <option value="36">36개월</option>
+      <option value="48">48개월</option>
+      <option value="60">60개월</option>
+    </select>
+
+    <label for="initial_cost_type">초기 비용 희망 조건</label>
+    <select id="initial_cost_type" name="initial_cost_type" required>
+      <option value="">선택하세요</option>
+      <option value="보증금">보증금 (초기 납부 후 만기 시 환급)</option>
+      <option value="선납금">선납금 (미리 납부하여 월 납입금 절감)</option>
+      <option value="초기 비용 없음">초기 비용 없음 (무보증금/무선납금)</option>
+    </select>
+
+    <label for="contact_phone">연락처</label>
+    <input type="tel" id="contact_phone" name="contact_phone" placeholder="010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required />
+
+    <label for="memo">추가 문의사항 (주행거리 등)</label>
+    <textarea id="memo" name="memo" rows="4" placeholder="예: 주행거리 2만km 이상, 특정 옵션 포함 희망"></textarea>
+
+    <button type="submit" class="cta">견적 요청하기</button>
+  </form>
+</section>
+
+<section id="faq" aria-label="자주 묻는 질문 FAQ">
+  <h2>자주 묻는 질문 (FAQ)</h2>
+  <dl class="faq">
+    <dt>Q. 리스카와 장기렌트카 중 어떤 것을 선택해야 할까요?</dt>
+    <dd>A. 리스카는 일반 번호판을 사용하며 개인 보험 가입을 통해 보험 경력을 유지할 수 있어 운전 경력이 오래된 분께 유리합니다. 반면 장기렌트는 초기 비용이 적고, 렌트사가 보험 및 정비 관리를 전담하므로 초보 운전자나 사고 이력이 많은 분들께 적합합니다.</dd>
+
+    <dt>Q. 리스 견적을 받으면 무조건 신규 가입해야 하나요?</dt>
+    <dd>A. 아닙니다. 무료 견적은 고객님의 상황을 파악하고 최적의 상품을 제안해 드리는 과정입니다. 견적을 받은 후 신중하게 비교해 보시고 결정하시면 됩니다. 저희 업체는 불필요한 가입 강요를 하지 않습니다.</dd>
+
+    <dt>Q. 리스카 만기 시 차량을 꼭 인수해야 하나요?</dt>
+    <dd>A. 아닙니다. 계약 조건에 따라 '인수형'과 '반납형'을 선택할 수 있습니다. 인수형은 만기 시 잔존가치만 지불하고 차량을 소유할 수 있고, 반납형은 깨끗하게 반납하고 새로운 차량으로 교체할 수 있습니다. 만기 시점에 고객님의 상황에 맞춰 유연하게 선택할 수 있습니다.</dd>
+
+    <dt>Q. 신용 점수가 낮아도 리스카 가입이 가능한가요?</dt>
+    <dd>A. 신용 점수 하위 10% 이내 고객의 경우, 리스사 자체 심사 기준에 따라 가입이 제한될 수 있습니다. 하지만 저희는 여러 제휴사와 비교하여 "신용 점수 완화 심사"를 통해 가입 가능 여부를 확인해 드립니다.</dd>
+
+    <dt>Q. 리스카 이용 중 사고가 나면 어떻게 되나요?</dt>
+    <dd>A. 리스카는 개인 보험이 적용되므로 보험사에 사고 접수를 하시면 됩니다. 장기렌트카의 경우 렌트사 보험으로 처리되어 보험료 할증 걱정이 덜한 장점이 있습니다.</dd>
+  </dl>
+</section>
+
+<section id="contact" aria-label="문의하기 및 회사 정보">
+  <h2>문의하기 및 회사 정보</h2>
+  <div class="image-container">
+    <img src="https://images.pexels.com/photos/17017769/pexels-photo-17017769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="자동차와 빌딩" />
+    <p class="image-credit">Image credit: Pexels</p>
+  </div>
+  <p>저희 리스카 전문 비교 업체는 다양한 국내외 리스 상품을 비교하여 고객님께 "가장 저렴한곳"을 찾아 드립니다. '리스카 전문'이라는 타이틀에 걸맞게 투명한 정보 제공과 신속한 서비스를 약속합니다.</p>
+  <p><strong>대표 문의 전화: 1577-1234</strong> | <a href="mailto:info@yourdomain.kr">info@yourdomain.kr</a></p>
+  <p>주소: 서울특별시 강남구 테헤란로 123 (방문 상담은 예약 필수)</p>
+  <p>영업시간: 평일 09:00~18:00 (주말 및 공휴일 휴무)</p>
+  <p>리스카를 처음 이용하시는 분들을 위해 <a href="https://www.yourdomain.kr/guide.html">리스카 가이드</a>를 제공하고 있습니다.</p>
+</section>
+
+  
